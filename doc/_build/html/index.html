@@ -1,0 +1,245 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Welcome to JuAFEM.jl’s documentation! &mdash; JuAFEM.jl 0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/julia.css" type="text/css" />
+  
+    <link rel="top" title="JuAFEM.jl 0.1 documentation" href="#"/>
+        <link rel="next" title="Elements" href="api/elements.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="http://juafemjl.readthedocs.org/"><img src="_static/logo.png" class="logo"></a>
+        <!--
+        <a href="#" class="fa fa-home"> JuAFEM.jl</a>
+        -->
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul>
+<li class="toctree-l1"><a class="reference internal" href="api/elements.html">Elements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/springs.html">Springs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/bars.html">Bars</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/solid.html">Solid elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/heat.html">Heat elements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/materials.html">Materials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/materials.html#linear-elastic">Linear elastic</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/utilities.html">Utilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/utilities.html#plotting">Plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/utilities.html#export-to-vtk">Export to VTK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/utilities.html#solving-system-of-equations">Solving system of equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/utilities.html#coordinate-extraction">Coordinate extraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/utilities.html#static-condensation">Static condensation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/utilities.html#assembler">Assembler</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/fe_values.html">FE Values</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/fe_values.html#function-spaces">Function spaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/fe_values.html#quadrature">Quadrature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/fe_values.html#using-fe-values">Using FE Values</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="#">JuAFEM.jl</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="#">Docs</a> &raquo;</li>
+      
+    <li>Welcome to JuAFEM.jl&#8217;s documentation!</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/index.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="welcome-to-juafem-jl-s-documentation">
+<h1>Welcome to JuAFEM.jl&#8217;s documentation!<a class="headerlink" href="#welcome-to-juafem-jl-s-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="differences-between-calfem-and-juafem">
+<h2>Differences between CALFEM and JuAFEM<a class="headerlink" href="#differences-between-calfem-and-juafem" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>In CALFEM, the <cite>Edof</cite> matrix has an index representing the element number. This is pretty useless and has been removed.</li>
+<li>CALFEM made some unfortunate choices in how they set up their matrices for dofs and coordinates. Both Julia and MATLAB use [column major order](<a class="reference external" href="https://en.wikipedia.org/wiki/Row-major_order">https://en.wikipedia.org/wiki/Row-major_order</a>) which means that memory is stored column by column. We therefore also want to store for example the dofs for an element in a column. The concrete effect of this is that the following matrices are transposed in JuAFEM: <cite>Edof</cite>, <cite>Ex</cite>, <cite>Ey</cite>, <cite>Ez</cite>, <cite>Dof</cite>, <cite>Coord</cite>. The dofs for element <cite>k</cite> is therefore computed by <cite>Edof[:, k]</cite> instead of like in MATLAB <cite>Edof(k, 2:end)</cite>.</li>
+<li>Some functions in CALFEM can compute a quantity for many elements at a time. In JuAFEM, you need to loop over the elements and call the function on each separate element.</li>
+</ul>
+</div>
+<div class="section" id="api">
+<span id="id1"></span><h2>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/elements.html">Elements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/springs.html">Springs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/bars.html">Bars</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/solid.html">Solid elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/heat.html">Heat elements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/materials.html">Materials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/materials.html#linear-elastic">Linear elastic</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/utilities.html">Utilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/utilities.html#plotting">Plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/utilities.html#export-to-vtk">Export to VTK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/utilities.html#solving-system-of-equations">Solving system of equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/utilities.html#coordinate-extraction">Coordinate extraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/utilities.html#static-condensation">Static condensation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/utilities.html#assembler">Assembler</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/fe_values.html">FE Values</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/fe_values.html#function-spaces">Function spaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/fe_values.html#quadrature">Quadrature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/fe_values.html#using-fe-values">Using FE Values</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api/elements.html" class="btn btn-neutral float-right" title="Elements" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Kristoffer Carlsson, Jim Brouzoulis.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

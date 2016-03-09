@@ -1,0 +1,8 @@
+include("finite_element.jl")
+include("assemble.jl")
+include("solve_eq.jl")
+include("extract_eldisp.jl")
+include("plotting.jl")
+include("gen_quad_mesh.jl")
+include("statcon.jl")
+include("coordxtr.jl")

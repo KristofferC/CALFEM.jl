@@ -8,7 +8,7 @@ julia:
   - nightly
 notifications:
   email: false
-# uncomment the following lines to override the default test script
-#script:
-#  - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
-#  - julia -e 'Pkg.clone(pwd()); Pkg.build("CALFEM.jl"); Pkg.test("CALFEM.jl"; coverage=true)'
+ uncomment the following lines to override the default test script
+script:
+  - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
+  - julia -e 'Pkg.clone(\"https://github.com/KristofferC/JuAFEM.jl\");Pkg.clone(pwd()); Pkg.build("CALFEM"); Pkg.test("CALFEM"; coverage=true)'

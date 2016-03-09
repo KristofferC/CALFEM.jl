@@ -1,5 +1,12 @@
-using CALFEM.jl
-using Base.Test
+using CALFEM
 
-# write your own tests here
-@test 1 == 1
+if VERSION >= v"0.5-"
+    using Base.Test
+else
+    using BaseTestNext
+    const Test = BaseTestNext
+end
+
+include("test_elements.jl")
+include("test_materials.jl")
+include("test_utilities.jl")

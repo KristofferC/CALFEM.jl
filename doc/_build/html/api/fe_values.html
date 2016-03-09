@@ -1,0 +1,236 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>FE Values &mdash; JuAFEM.jl 0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/julia.css" type="text/css" />
+  
+    <link rel="top" title="JuAFEM.jl 0.1 documentation" href="../index.html"/>
+        <link rel="prev" title="Utilities" href="utilities.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="http://juafemjl.readthedocs.org/"><img src="../_static/logo.png" class="logo"></a>
+        <!--
+        <a href="../index.html" class="fa fa-home"> JuAFEM.jl</a>
+        -->
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="elements.html">Elements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="springs.html">Springs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bars.html">Bars</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solid.html">Solid elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="heat.html">Heat elements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="materials.html">Materials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="materials.html#linear-elastic">Linear elastic</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="utilities.html">Utilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="utilities.html#plotting">Plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utilities.html#export-to-vtk">Export to VTK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utilities.html#solving-system-of-equations">Solving system of equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utilities.html#coordinate-extraction">Coordinate extraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utilities.html#static-condensation">Static condensation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utilities.html#assembler">Assembler</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">FE Values</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#function-spaces">Function spaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quadrature">Quadrature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-fe-values">Using FE Values</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">JuAFEM.jl</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>FE Values</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/fe_values.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="fe-values">
+<span id="api-fe-values"></span><h1>FE Values<a class="headerlink" href="#fe-values" title="Permalink to this headline">¶</a></h1>
+<p>To assist with creating new finite elements <code class="docutils literal"><span class="pre">JuAFEM</span></code> has the concept of an object called
+<code class="docutils literal"><span class="pre">FEValues</span></code>. The idea for this was taken from <a href="#id1"><span class="problematic" id="id2">`deal.ii`_</span></a>.</p>
+<p>An <code class="docutils literal"><span class="pre">FEValues</span></code> object facilitates with evaluating shape functions, gradient of shape functions and evaluating values on operators of finite element discritized functions.</p>
+<p>Initializing an <code class="docutils literal"><span class="pre">FEValues</span></code> object is done with two other objects. One <code class="docutils literal"><span class="pre">FunctionSpace</span></code> object and one <code class="docutils literal"><span class="pre">QuadratureRule</span></code>.</p>
+<div class="section" id="function-spaces">
+<h2>Function spaces<a class="headerlink" href="#function-spaces" title="Permalink to this headline">¶</a></h2>
+<p>A function space is described by its name, for example <code class="docutils literal"><span class="pre">Lagrange</span></code>, an order of the base functions and a shape which the space is defined on.</p>
+<p>The following function spaces are currently available:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Lagrange{1,</span> <span class="pre">JuaFEM.Line}</span></code></li>
+<li><code class="docutils literal"><span class="pre">Lagrange{2,</span> <span class="pre">JuaFEM.Line}</span></code></li>
+<li><code class="docutils literal"><span class="pre">Lagrange{1,</span> <span class="pre">JuaFEM.Square}</span></code></li>
+<li><code class="docutils literal"><span class="pre">Lagrange{1,</span> <span class="pre">JuaFEM.Triangle}</span></code></li>
+<li><code class="docutils literal"><span class="pre">Lagrange{1,</span> <span class="pre">JuaFEM.Triangle}</span></code></li>
+<li><code class="docutils literal"><span class="pre">Lagrange{2,</span> <span class="pre">JuaFEM.Triangle}</span></code></li>
+<li><code class="docutils literal"><span class="pre">Lagrange{1,</span> <span class="pre">JuaFEM.Cube}</span></code></li>
+<li><code class="docutils literal"><span class="pre">Serendipity{2,</span> <span class="pre">JuaFEM.Square}</span></code></li>
+</ul>
+</div>
+<div class="section" id="quadrature">
+<h2>Quadrature<a class="headerlink" href="#quadrature" title="Permalink to this headline">¶</a></h2>
+<p>Currently only Gauss quadrature is implemented. A <cite>QuadratureRule</cite> is created from <code class="docutils literal"><span class="pre">get_gaussrule(shape,</span> <span class="pre">order)</span></code> where shape is an instance of one of the shapes shown in the function space list above and order is the order of the quadrature rule.</p>
+</div>
+<div class="section" id="using-fe-values">
+<h2>Using FE Values<a class="headerlink" href="#using-fe-values" title="Permalink to this headline">¶</a></h2>
+<p>An example of creating a <code class="docutils literal"><span class="pre">FEValues</span></code> object is shown below.</p>
+<p>Upon creation, <code class="docutils literal"><span class="pre">FEValues</span></code> caches the values of the shape functions and derivatives in the quadrature points.</p>
+<p>The points of FEValues is that for each element you call <code class="docutils literal"><span class="pre">reinit!(fev,</span> <span class="pre">x)</span></code> where <code class="docutils literal"><span class="pre">x</span></code> is the coordinate matrix for an element. This will update the global shape function derivatives, jacobians, weights etc.</p>
+<p>Different queries can now be done on the shape functions:</p>
+<p>We can also compute different operatiors on a finite element discritized function:</p>
+<p>_ <a class="reference external" href="https://www.dealii.org/developer/doxygen/deal.II/classFEValues.html">https://www.dealii.org/developer/doxygen/deal.II/classFEValues.html</a></p>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="utilities.html" class="btn btn-neutral" title="Utilities" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Kristoffer Carlsson, Jim Brouzoulis.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
