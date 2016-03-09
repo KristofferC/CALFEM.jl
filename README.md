@@ -16,7 +16,7 @@ Pkg.clone("https://github.com/KristofferC/CALFEM.jl")
 
 ## Examples
 
-See the example folder for examples. These are generally written as IPyhton notebooks.
+See the example folder for examples. These are generally written as Jupyter notebooks.
 
 
 ## Documentation:
