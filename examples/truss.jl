@@ -1,4 +1,4 @@
-using JuAFEM
+using CALFEM
 
 # Element dofs
 Edof=[1   1  2  5  6;
@@ -28,9 +28,9 @@ Ke1 = bar2e(Ex[:,1], Ey[:,1], ep)
 Ke2 = bar2e(Ex[:,2], Ey[:,2], ep)
 Ke3 = bar2e(Ex[:,3], Ey[:,3], ep)
 
-K = assemble(Edof[:,1], K, Ke1)
-K = assemble(Edof[:,2], K, Ke2)
-K = assemble(Edof[:,3], K, Ke3)
+K = assem(Edof[:,1], K, Ke1)
+K = assem(Edof[:,2], K, Ke2)
+K = assem(Edof[:,3], K, Ke3)
 
 # Boundary conditions
 f[6] = -100e3

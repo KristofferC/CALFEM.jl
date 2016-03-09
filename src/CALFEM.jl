@@ -22,9 +22,12 @@ export flw2i4s, flw2i8s, flw2ts, flw3i8s
 export bar2e, bar2s, bar2g
 
 # Materials
-export hooke, solveq, assem
+export hooke
+
+# Utilities
+export solveq, assem
 export extract, coordxtr, topologyxtr
-export statcon, gen_quad_mesh
+export statcon, gen_quad_mesh, eldraw2, eldisp2
 
 include("materials/hooke.jl")
 include("utilities/utilities.jl")
