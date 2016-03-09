@@ -4,12 +4,12 @@
 
 `CALFEM.jl` is a port of the simple Matlab FE toolbox [CALFEM](http://www.solid.lth.se/education/courses/finita-elementmetoden-fhlf01-fhl064/software/) written in Julia. The purpose of this package is to ease the transition for people who want to try out Julia for FE-analysis.
 
-Not all of CALFEM is yet implemented. For a list of implemented functions, see:
+Not all of CALFEM is yet implemented. For a list of implemented functions, see [this issue](https://github.com/KristofferC/CALFEM.jl/issues/1). 
 
 
 ## Installation
 
-```
+```jl
 Pkg.clone("https://github.com/KristofferC/JuAFEM.jl")
 Pkg.clone("https://github.com/KristofferC/CALFEM.jl")
 ```
@@ -23,5 +23,5 @@ See the example folder for examples. These are generally written as IPyhton note
 
 See the official CALFEM manual which can be found at [here](http://www.solid.lth.se/education/courses/finita-elementmetoden-fhlf01-fhl064/software/).
 
-There is also a briefer online documentation available:
+There is also a briefer online documentation available [here](http://calfemjl.readthedocs.org/en/latest/). This also documents a few differences between this package and the MATLAB package.
 
