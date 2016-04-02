@@ -15,6 +15,12 @@ Pkg.clone("https://github.com/KristofferC/JuAFEM.jl")
 Pkg.clone("https://github.com/KristofferC/CALFEM.jl")
 ```
 
+for the plotting to work you also need to run
+
+```jl
+Pkg.add("Winston")
+```
+
 ## Examples
 
 See the example folder for examples. These are generally written as Jupyter notebooks.
