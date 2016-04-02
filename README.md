@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/KristofferC/CALFEM.jl.svg?branch=master)](https://travis-ci.org/KristofferC/CALFEM.jl)
 
-`CALFEM.jl` is a port of the simple Matlab FE toolbox [CALFEM](http://www.solid.lth.se/education/courses/finita-elementmetoden-fhlf01-fhl064/software/) written in Julia. The purpose of this package is to ease the transition for people who want to try out Julia for FE-analysis.
+`CALFEM.jl` is an API port of the simple Matlab FE toolbox [CALFEM](http://www.solid.lth.se/education/courses/finita-elementmetoden-fhlf01-fhl064/software/) written in Julia. The purpose of this package is to ease the transition for people who want to try out Julia for FE-analysis. `CALFEM.jl` is built on top of [JuAFEM](https://github.com/KristofferC/JuAFEM.jl).
 
 Not all of CALFEM is yet implemented. For a list of implemented functions, see [this issue](https://github.com/KristofferC/CALFEM.jl/issues/1). 
 
@@ -10,14 +10,20 @@ Not all of CALFEM is yet implemented. For a list of implemented functions, see [
 ## Installation
 
 ```jl
+Pkg.clone("https://github.com/KristofferC/ContMechTensors.jl")
 Pkg.clone("https://github.com/KristofferC/JuAFEM.jl")
 Pkg.clone("https://github.com/KristofferC/CALFEM.jl")
+```
+
+for the plotting to work you also need to run
+
+```jl
+Pkg.add("Winston")
 ```
 
 ## Examples
 
 See the example folder for examples. These are generally written as Jupyter notebooks.
-
 
 ## Documentation:
 
