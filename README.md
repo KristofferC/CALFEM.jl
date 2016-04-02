@@ -10,8 +10,8 @@ Not all of CALFEM is yet implemented. For a list of implemented functions, see [
 ## Installation
 
 ```jl
-Pkg.clone("https://github.com/KristofferC/JuAFEM.jl")
 Pkg.clone("https://github.com/KristofferC/ContMechTensors.jl")
+Pkg.clone("https://github.com/KristofferC/JuAFEM.jl")
 Pkg.clone("https://github.com/KristofferC/CALFEM.jl")
 ```
 
