@@ -10,4 +10,6 @@ notifications:
   email: false
 script:
   - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
-  - julia -e 'Pkg.clone("https://github.com/KristofferC/JuAFEM.jl");Pkg.clone(pwd()); Pkg.build("CALFEM"); Pkg.test("CALFEM"; coverage=true)'
+  - julia -e 'Pkg.clone("https://github.com/KristofferC/JuAFEM.jl");
+    Pkg.clone("https://github.com/KristofferC/ContMechTensors.jl");
+    Pkg.clone(pwd()); Pkg.build("CALFEM"); Pkg.test("CALFEM"; coverage=true)'
