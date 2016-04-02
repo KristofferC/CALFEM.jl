@@ -8,8 +8,7 @@ using Devectorize
 
 import Base: show
 
-import JuAFEM: Square, Triangle, FunctionSpace, n_dim, ref_shape, value!, derivative!,
-       inv_spec!, det_spec
+import JuAFEM: Square, Triangle, FunctionSpace, FEValues, n_dim, ref_shape, value!, derivative!
 
 
 # Elements
