@@ -1,4 +1,4 @@
-import JuAFEM: Square, Triangle
+import JuAFEM: RefCube, RefTetrahedron
 
 using ForwardDiff
 
