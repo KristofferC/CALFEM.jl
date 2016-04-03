@@ -131,8 +131,8 @@ end
 
 
     # correct for calfems order of gauss points
-    @test norm(σ - σ_calfem[[1,3,2,4], :]') / norm(σ_calfem) < 1e-14
-    @test norm(ε - ε_calfem[[1,3,2,4], :]') / norm(ε_calfem) < 1e-14
+    @test norm(σ - σ_calfem') / norm(σ_calfem) < 1e-14
+    @test norm(ε - ε_calfem') / norm(ε_calfem) < 1e-14
     @test norm(intf - intf_calfem) / norm(intf_calfem) < 1e-14
 end
 
@@ -271,8 +271,8 @@ end
   -1.958109485444647;
   -1.639108853140777]
 
-    @test norm(σ - σ_calfem[[1,5,4,8,2,6,3,7], [1,2,3,6,5,4]]') / norm(σ_calfem) < 1e-5
-    @test norm(ε - ε_calfem[[1,5,4,8,2,6,3,7], [1,2,3,6,5,4]]') / norm(ε_calfem) < 1e-5
+    @test norm(σ - σ_calfem[[1,2,4,3,5,6,8,7], [1,2,3,6,5,4]]') / norm(σ_calfem) < 1e-5
+    @test norm(ε - ε_calfem[[1,2,4,3,5,6,8,7], [1,2,3,6,5,4]]') / norm(ε_calfem) < 1e-5
     @test norm(intf - intf_calfem) / norm(intf_calfem) < 1e-14
 end
 
@@ -343,8 +343,8 @@ end
           -1.556915325616566]
 
 
-      @test norm(σ - σ_calfem[[1,3, 2, 4], :]') / norm(σ_calfem) < 1e-13
-      @test norm(ε - ε_calfem[[1,3, 2, 4], :]') / norm(ε_calfem) < 1e-13
+      @test norm(σ - σ_calfem') / norm(σ_calfem) < 1e-13
+      @test norm(ε - ε_calfem') / norm(ε_calfem) < 1e-13
       @test norm(intf - intf_calfem) / norm(intf_calfem) < 1e-14
 end
 
@@ -377,8 +377,8 @@ end
      -1.723760430703402   5.732050807568878;
      -1.261880215351701   3.422649730810373]
 
-      @test norm(es - es_calfem[[1,3,2,4], :]') / norm(es_calfem) < 1e-13
-      @test norm(et - et_calfem[[1,3,2,4], :]') / norm(et_calfem) < 1e-13
+      @test norm(es - es_calfem') / norm(es_calfem) < 1e-13
+      @test norm(et - et_calfem') / norm(et_calfem) < 1e-13
 end
 
 @testset "flw2i8e" begin
@@ -417,8 +417,8 @@ end
   -2.187219748188395   6.921119965694889;
    5.855440108225263   4.135429337120202]
 
-    @test norm(es - es_calfem[[1 ,3, 2, 4], :]') / norm(es_calfem) < 1e-13
-    @test norm(et - et_calfem[[1 ,3, 2, 4], :]') / norm(et_calfem) < 1e-13
+    @test norm(es - es_calfem') / norm(es_calfem) < 1e-13
+    @test norm(et - et_calfem') / norm(et_calfem) < 1e-13
 end
 
 
@@ -494,8 +494,8 @@ end
     -0.781769647374687   5.905082103747760   2.078287062219387;
     -0.666357396405506   4.994845707601153   3.209293306780562]
 
-    @test norm(es - es_calfem[[1,5,4,8,2,6,3,7], :]') / norm(es_calfem) < 1e-13
-    @test norm(et - et_calfem[[1,5,4,8,2,6,3,7], :]') / norm(et_calfem) < 1e-13
+    @test norm(es - es_calfem[[1,2,4,3,5,6,8,7], :]') / norm(es_calfem) < 1e-13
+    @test norm(et - et_calfem[[1,2,4,3,5,6,8,7], :]') / norm(et_calfem) < 1e-13
 end
 
 @testset "bar" begin

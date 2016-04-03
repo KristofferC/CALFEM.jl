@@ -1,3 +1,4 @@
+include("cache_quadrules.jl")
 include("finite_element.jl")
 include("assemble.jl")
 include("solve_eq.jl")
