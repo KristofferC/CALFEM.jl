@@ -8,7 +8,7 @@ using Devectorize
 
 import Base: show
 
-import JuAFEM: RefCube, RefTetrahedron, FunctionSpace, FEValues, n_dim, ref_shape, value!, derivative!
+import JuAFEM: RefCube, RefTetrahedron, FunctionSpace, FEValues, value!, derivative!
 
 
 # Elements
