@@ -1,5 +1,5 @@
 # TODO document this
-immutable FElement{FS <: FunctionSpace}
+immutable FElement{FS <: Interpolation}
     name::Symbol
     function_space::FS
     inits::Dict{Symbol, NTuple{2, Int}}
@@ -13,7 +13,7 @@ immutable FElement{FS <: FunctionSpace}
     default_intorder::Int # Should give a full rank stiffness matrix
 end
 
-n_dim(fele::FElement) = n_dim(fele.function_space)
+n_dim(fele::FElement) = getdim(fele.function_space)
 n_flux(fele::FElement) = fele.flux_size
 
 function show(io::IO, fele::FElement)

@@ -5,11 +5,13 @@ module CALFEM
 using JuAFEM
 using InplaceOps
 using Devectorize
+using Tensors
 
 import Base: show
 
-import JuAFEM: RefCube, RefTetrahedron, FunctionSpace, FEValues, n_dim, ref_shape, value!, derivative!
+import JuAFEM: RefCube, RefTetrahedron, Interpolation, CellValues, value, derivative, getdim, getrefshape
 
+struct Dim{d} end
 
 # Elements
 export spring1e, spring1s

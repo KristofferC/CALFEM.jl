@@ -21,7 +21,7 @@ function gen_ke_fe_body(ele)
         ndofs = $(ele.nnodes) * $(ele.dofs_per_node)
         nnodes = $(ele.nnodes)
         ndim = $(n_dim(ele))
-        n_basefuncs = n_basefunctions($(ele.function_space))
+        n_basefuncs = getnbasefunctions($(ele.function_space))
         @assert length(x) == n_basefuncs * ndim
         xvec = reinterpret(Vec{$(n_dim(ele)), Float64}, x, (n_basefuncs,))
         # TODO; need to fix the eq size for different problems
@@ -44,11 +44,11 @@ function gen_ke_fe_body(ele)
 
         # Create the gauss rule of the requested order on the
         # elements reference shape
-        qr = get_gaussrule(Dim{$(n_dim(ele))}, $(ref_shape(ele.function_space)), int_order)
+        qr = get_gaussrule(Dim{$(n_dim(ele))}, $(getrefshape(ele.function_space)), int_order)
 
         for (i, (ξ, w)) in enumerate(zip(qr.points, qr.weights))
-            value!($(ele.function_space), N, ξ)
-            derivative!($(ele.function_space), dNdξ, ξ)
+            N = value($(ele.function_space), ξ)
+            dNdξ = derivative($(ele.function_space), ξ)
             J = zero(Tensor{2, $(n_dim(ele))})
             for j in 1:n_basefuncs
                 J += dNdξ[j] ⊗ xvec[j]
@@ -109,7 +109,7 @@ function gen_s_body(ele)
         ndofs = $(ele.nnodes) * $(ele.dofs_per_node)
         nnodes = $(ele.nnodes)
         ndim = $(n_dim(ele))
-        n_basefuncs = n_basefunctions($(ele.function_space))
+        n_basefuncs = getnbasefunctions($(ele.function_space))
         @assert length(x) == n_basefuncs * ndim
         xvec = reinterpret(Vec{$(n_dim(ele)), Float64}, x, (n_basefuncs,))
         fluxlen = $(n_flux(ele))
@@ -129,7 +129,7 @@ function gen_s_body(ele)
 
         # Create the gauss rule of the requested order on the
         # elements reference shape
-        qr = get_gaussrule(Dim{$(n_dim(ele))}, $(ref_shape(ele.function_space)), int_order)
+        qr = get_gaussrule(Dim{$(n_dim(ele))}, $(getrefshape(ele.function_space)), int_order)
 
         n_gps = length(qr.points)
         FLUXES = zeros(fluxlen, n_gps)
@@ -137,8 +137,8 @@ function gen_s_body(ele)
         points = [zero(Vec{$(n_dim(ele)), Float64}) for j in 1:length(qr.points)]
 
         for (i, (ξ, w)) in enumerate(zip(qr.points, qr.weights))
-            value!($(ele.function_space), N, ξ)
-            derivative!($(ele.function_space), dNdξ, ξ)
+            N = value($(ele.function_space), ξ)
+            dNdξ = derivative($(ele.function_space), ξ)
             J = zero(Tensor{2, $(n_dim(ele))})
             for j in 1:n_basefuncs
                 J += dNdξ[j] ⊗ xvec[j]
@@ -194,7 +194,7 @@ function gen_f_body(ele)
         ndofs = $(ele.nnodes) * $(ele.dofs_per_node)
         nnodes = $(ele.nnodes)
         ndim = $(n_dim(ele))
-        n_basefuncs = n_basefunctions($(ele.function_space))
+        n_basefuncs = getnbasefunctions($(ele.function_space))
         @assert length(x) == n_basefuncs * ndim
         xvec = reinterpret(Vec{$(n_dim(ele)), Float64}, x, (n_basefuncs,))
         fluxlen = $(n_flux(ele))
@@ -214,15 +214,15 @@ function gen_f_body(ele)
 
         # Create the gauss rule of the requested order on the
         # elements reference shape
-        qr = get_gaussrule(Dim{$(n_dim(ele))}, $(ref_shape(ele.function_space)), int_order)
+        qr = get_gaussrule(Dim{$(n_dim(ele))}, $(getrefshape(ele.function_space)), int_order)
 
         if size(σs, 2) != length(qr.points)
             throw(ArgumentError("must use same integration rule to compute stresses and internal forces"))
         end
 
         for (i, (ξ, w)) in enumerate(zip(qr.points, qr.weights))
-            value!($(ele.function_space), N, ξ)
-            derivative!($(ele.function_space), dNdξ, ξ)
+            N = value($(ele.function_space), ξ)
+            dNdξ = derivative($(ele.function_space), ξ)
             J = zero(Tensor{2, $(n_dim(ele))})
             for j in 1:n_basefuncs
                 J += dNdξ[j] ⊗ xvec[j]
