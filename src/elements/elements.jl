@@ -47,8 +47,8 @@ function gen_ke_fe_body(ele)
         qr = get_gaussrule(Dim{$(n_dim(ele))}, $(getrefshape(ele.function_space)), int_order)
 
         for (i, (ξ, w)) in enumerate(zip(qr.points, qr.weights))
-            value!($(ele.function_space), N, ξ)
-            derivative!($(ele.function_space), dNdξ, ξ)
+            N = value($(ele.function_space), ξ)
+            dNdξ = derivative($(ele.function_space), ξ)
             J = zero(Tensor{2, $(n_dim(ele))})
             for j in 1:n_basefuncs
                 J += dNdξ[j] ⊗ xvec[j]
@@ -137,8 +137,8 @@ function gen_s_body(ele)
         points = [zero(Vec{$(n_dim(ele)), Float64}) for j in 1:length(qr.points)]
 
         for (i, (ξ, w)) in enumerate(zip(qr.points, qr.weights))
-            value!($(ele.function_space), N, ξ)
-            derivative!($(ele.function_space), dNdξ, ξ)
+            N = value($(ele.function_space), ξ)
+            dNdξ = derivative($(ele.function_space), ξ)
             J = zero(Tensor{2, $(n_dim(ele))})
             for j in 1:n_basefuncs
                 J += dNdξ[j] ⊗ xvec[j]
@@ -221,8 +221,8 @@ function gen_f_body(ele)
         end
 
         for (i, (ξ, w)) in enumerate(zip(qr.points, qr.weights))
-            value!($(ele.function_space), N, ξ)
-            derivative!($(ele.function_space), dNdξ, ξ)
+            N = value($(ele.function_space), ξ)
+            dNdξ = derivative($(ele.function_space), ξ)
             J = zero(Tensor{2, $(n_dim(ele))})
             for j in 1:n_basefuncs
                 J += dNdξ[j] ⊗ xvec[j]

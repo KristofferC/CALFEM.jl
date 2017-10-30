@@ -1,5 +1,5 @@
 # TODO document this
-immutable FElement{FS <: FunctionSpace}
+immutable FElement{FS <: Interpolation}
     name::Symbol
     function_space::FS
     inits::Dict{Symbol, NTuple{2, Int}}
