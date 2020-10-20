@@ -1,9 +1,11 @@
+using LinearAlgebra
+
 """
     bar2e(ex, ey, elem_prop) -> Ke
 
 Computes the element stiffness matrix `Ke` for a 2D bar element.
 """
-function bar2e(ex::Vector, ey::Vector, elem_prop::Vector)
+function bar2e(ex::Union{LinearAlgebra.Transpose, Adjoint,Vector}, ey::Union{LinearAlgebra.Transpose, Adjoint,Vector}, elem_prop::Union{LinearAlgebra.Transpose, Adjoint,Vector})
 
     # Local element stiffness
     E = elem_prop[1];  A = elem_prop[2]
@@ -32,7 +34,7 @@ end
 
 Computes the sectional force (normal force) `N` for a 2D bar element.
 """
-function bar2s(ex::Vector, ey::Vector, elem_prop::Vector, el_disp::Vector)
+function bar2s(ex::Union{LinearAlgebra.Transpose, Adjoint,Vector}, ey::Union{LinearAlgebra.Transpose, Adjoint,Vector}, elem_prop::Union{LinearAlgebra.Transpose, Adjoint,Vector}, el_disp::Union{LinearAlgebra.Transpose, Adjoint,Vector})
 
     E = elem_prop[1];  A = elem_prop[2]
 
@@ -91,4 +93,3 @@ function bar2g(ex::Vector, ey::Vector, elem_prop::Vector, N::Number)
     return G' * (k * __bar2g_c1 + N/L * __bar2g_c2) * G
 
 end
-
